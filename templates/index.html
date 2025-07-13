@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>PF Calculator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Bootstrap 5 CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-md-8 col-lg-6">
+        <div class="card shadow-lg">
+          <div class="card-header bg-primary text-white text-center">
+            <h3 class="mb-0">Provident Fund (PF) Calculator</h3>
+          </div>
+          <div class="card-body">
+            <form method="POST">
+              <div class="mb-3">
+                <label for="basic_salary" class="form-label">Basic Salary (₹):</label>
+                <input type="number" name="basic_salary" class="form-control" id="basic_salary" step="0.01" required>
+              </div>
+              <div class="mb-3">
+                <label for="months" class="form-label">Number of Months:</label>
+                <input type="number" name="months" class="form-control" id="months" required>
+              </div>
+              <div class="mb-3">
+                <label for="interest" class="form-label">Annual Interest Rate (%):</label>
+                <input type="number" name="interest" class="form-control" id="interest" step="0.01" required>
+              </div>
+              <div class="d-grid">
+                <button type="submit" class="btn btn-primary">Calculate PF</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        {% if result %}
+        <div class="card mt-4 shadow-sm">
+          <div class="card-body bg-light">
+            <h5 class="card-title text-success">Calculation Result</h5>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Employee Monthly Contribution: ₹{{ result.employee_monthly }}</li>
+              <li class="list-group-item">Employer Monthly PF Contribution: ₹{{ result.employer_monthly }}</li>
+              <li class="list-group-item">Employer Monthly EPS Contribution: ₹{{ result.eps_monthly }}</li>
+              <li class="list-group-item fw-bold text-primary">Total PF Balance: ₹{{ result.pf_total }}</li>
+              <li class="list-group-item fw-bold text-primary">Total EPS Balance: ₹{{ result.eps_total }}</li>
+              <li class="list-group-item fw-bold text-success">PF Balance with Interest: ₹{{ result.pf_with_interest }}</li>
+            </ul>
+          </div>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS (optional) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
